@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
   styles: [
     `
       h1 {
-        color: tomato;
+        color: teal;
       }
     `
   ]
