@@ -1,6 +1,15 @@
 <label>Enter server name</label>
 <!-- '$event' is kind of a reserve variable that Angular uses to represent the incoming data from an event -->
-<input type="text" (input)="onUpdateServerName($event)" class="form-control">
+<!--<input type="text" (input)="onUpdateServerName($event)" class="form-control">-->
+<!--
+  with '[(ngModel)]' we are doing a 'two-way data binding',
+  we are listening to the input event and assigning its value
+  to the 'serverName' property.
+
+  This way if we type something in the input, it will automatically update the property value,
+  but also, if we update the property value, the input value will be updated too.
+-->
+<input type="text" [(ngModel)]="serverName" class="form-control">
 <p> {{ serverName }} </p>
 <button [disabled]="!allowNewServer" class="btn btn-primary" (click)="onCreateServer()">Add server</button>
 <p>{{ serverCreationStatus }}</p>
