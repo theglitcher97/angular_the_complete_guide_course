@@ -10,7 +10,6 @@
   but also, if we update the property value, the input value will be updated too.
 -->
 <input type="text" [(ngModel)]="serverName" class="form-control">
-<p> {{ serverName }} </p>
 <button [disabled]="!allowNewServer" class="btn btn-primary" (click)="onCreateServer()">Add server</button>
 <p>{{ serverCreationStatus }}</p>
 <app-server></app-server>
