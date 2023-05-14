@@ -1,15 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-  // selector: 'app-servers',
-  // selector: '[app-servers]',
-  selector: '.app-servers',
+  selector: 'app-servers',
   templateUrl: './servers.component.html',
-  /*template:
-    `
-      <app-server></app-server>
-      <app-server></app-server>
-    `,*/
   styleUrls: ['./servers.component.css']
 })
 export class ServersComponent {
@@ -17,12 +10,14 @@ export class ServersComponent {
   public serverCreationStatus = 'No server was created';
   public serverName = '';
   public serverWasCreated = false;
+  public servers = ['Google Cloud Server', 'Twitter Bots Server']
   constructor() {
     setTimeout(()=> this.allowNewServer = true,2000)
   }
 
   onCreateServer(){
     this.serverCreationStatus = "Server was created! Server name: " + this.serverName;
+    this.servers.push(this.serverCreationStatus);
     this.serverWasCreated = true;
   }
 
