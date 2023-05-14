@@ -24,4 +24,6 @@ export class ServerComponent {
   getServerColor() {
     return this.serverStatus === ONLINE ? ONLINE_COLOR : OFFLINE_COLOR;
   }
+
+  protected readonly ONLINE = ONLINE;
 }
