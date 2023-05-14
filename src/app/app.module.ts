@@ -10,6 +10,7 @@ import { RecipeItemComponent } from './recipe-book/recipe-list/recipe-item/recip
 import { RecipeDetailsComponent } from './recipe-book/recipe-list/recipe-details/recipe-details.component';
 import {HeaderComponent} from "./header-component/header.component";
 import { RecipesComponent } from './recipe-book/recipes/recipes.component';
+import {NgOptimizedImage} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { RecipesComponent } from './recipe-book/recipes/recipes.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    NgOptimizedImage
   ],
   providers: [],
   bootstrap: [AppComponent]
