@@ -13,19 +13,24 @@ export class CockpitComponent {
   @Output() blueprintCreated: EventEmitter<Server> = new EventEmitter<Server>();
 
   onServerAdded() {
-    this.serverCreated.emit({
-      type: 'server',
-      name: this.newServerName,
-      content: this.newServerContent
-    })
+    if(this.isServerInfoValid()) this.serverCreated.emit(this.buildServerObject('server'))
   }
 
   onBlueprintAdded() {
-    this.blueprintCreated.emit({
-      type: 'blueprint',
+    if(this.isServerInfoValid()) this.blueprintCreated.emit(this.buildServerObject('blueprint'))
+  }
+
+  isServerInfoValid(){
+    return this.newServerName.trim().length !== 0 &&
+      this.newServerContent.trim().length !== 0;
+  }
+
+  buildServerObject(serverType: string): Server {
+    return {
+      type: serverType,
       name: this.newServerName,
       content: this.newServerContent
-    })
+    }
   }
 }
 
