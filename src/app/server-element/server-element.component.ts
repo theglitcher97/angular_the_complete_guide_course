@@ -7,5 +7,5 @@ import {Server} from "../cockpit/cockpit.component";
   styleUrls: ['./server-element.component.css']
 })
 export class ServerElementComponent {
-  @Input() element!: Server;
+  @Input("serverElement") element!: Server;
 }
