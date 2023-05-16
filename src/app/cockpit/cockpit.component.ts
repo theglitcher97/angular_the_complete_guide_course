@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Output} from '@angular/core';
+import {Server} from "../shared/types/server";
 
 @Component({
   selector: 'app-cockpit',
@@ -34,8 +35,4 @@ export class CockpitComponent {
   }
 }
 
-export type Server = {
-  type: string,
-  name: string,
-  content: string
-}
+

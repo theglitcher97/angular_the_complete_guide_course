@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {Server} from "./cockpit/cockpit.component";
+import {Server} from "./shared/types/server";
 
 @Component({
   selector: 'app-root',
