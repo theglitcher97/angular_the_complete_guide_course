@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, EventEmitter, Output, ViewChild} from '@angular/core';
 import {Server} from "../shared/types/server";
 
 @Component({
@@ -7,8 +7,10 @@ import {Server} from "../shared/types/server";
   styleUrls: ['./cockpit.component.css']
 })
 export class CockpitComponent {
-  public newServerName = '';
-  public newServerContent = '';
+  /*public newServerName = '';
+  public newServerContent = '';*/
+  @ViewChild('serverName') private serverNameElement!: ElementRef
+  @ViewChild('serverContent') private serverContentElement!: ElementRef
 
   @Output() serverCreated: EventEmitter<Server> = new EventEmitter<Server>();
   @Output() blueprintCreated: EventEmitter<Server> = new EventEmitter<Server>();
@@ -22,15 +24,15 @@ export class CockpitComponent {
   }
 
   isServerInfoValid(){
-    return this.newServerName.trim().length !== 0 &&
-      this.newServerContent.trim().length !== 0;
+    return this.serverNameElement.nativeElement.value.trim().length !== 0 &&
+      this.serverContentElement.nativeElement.value.trim().length !== 0;
   }
 
   buildServerObject(serverType: string): Server {
     return {
       type: serverType,
-      name: this.newServerName,
-      content: this.newServerContent
+      name: this.serverNameElement.nativeElement.value,
+      content: this.serverContentElement.nativeElement.value
     }
   }
 }
