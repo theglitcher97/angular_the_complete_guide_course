@@ -5,8 +5,11 @@
     <div class="col-xs-12">
       <button class="btn btn-danger" (click)="onRemoveFirstServerElement()">Remove first server element</button>
       <app-server-element *ngFor="let element of serverElements" [serverElement]="element">
-        <!-- The next content -inside app-server-element- will be render on the ng-content inside app-server element--->
-        <p>
+        <!--
+          The next content -inside app-server-element- will be render on the ng-content inside app-server element,
+          thus, it will be part of that component view, not this one (app component)
+         --->
+        <p #paragraphContent>
           <strong *ngIf="element.type === 'server'" style="color: red">{{ element.content }}</strong>
           <em *ngIf="element.type === 'blueprint'">{{ element.content }}</em>
         </p>

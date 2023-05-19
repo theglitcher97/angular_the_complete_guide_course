@@ -2,11 +2,11 @@ import {
   AfterContentChecked,
   AfterContentInit, AfterViewChecked,
   AfterViewInit,
-  Component,
-  DoCheck,
+  Component, ContentChild,
+  DoCheck, ElementRef,
   Input,
   OnChanges, OnDestroy,
-  OnInit
+  OnInit, Output, ViewChild
 } from '@angular/core';
 import {Server} from "../shared/types/server";
 
@@ -19,6 +19,9 @@ export class ServerElementComponent implements OnInit,
   OnChanges, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy {
 
   @Input("serverElement") element!: Server;
+
+  @ContentChild("paragraphContent") paragraphContent!: ElementRef;
+  @ViewChild("heading") heading!: ElementRef;
 
   constructor() {
     console.log('on the constructor');
@@ -33,6 +36,8 @@ export class ServerElementComponent implements OnInit,
   // This hook gets trigger after the constructor
   ngOnInit() {
     console.log('on the OnInit')
+    console.log('Checking heading on OnInit', this.heading?.nativeElement.textContent)
+    console.log('Checking paragraphContent on OnInit', this.paragraphContent?.nativeElement.textContent)
   }
 
   ngDoCheck() {
@@ -49,6 +54,8 @@ export class ServerElementComponent implements OnInit,
 
   ngAfterViewInit() {
     console.log('ngAfterViewInit invoked')
+    console.log('Checking heading on AfterViewInit', this.heading?.nativeElement.textContent)
+    console.log('Checking paragraphContent on OnInit', this.paragraphContent.nativeElement.textContent)
   }
 
   ngAfterViewChecked() {

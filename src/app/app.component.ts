@@ -9,7 +9,7 @@ import {Server} from "./shared/types/server";
 export class AppComponent {
   serverElements: Server[] = [
     {type: 'server', name: "YouTube's", content: 'Streaming server'},
-    {type: 'blueprint', name: "Facebook's server", content: 'Messaging server'},
+    // {type: 'blueprint', name: "Facebook's server", content: 'Messaging server'},
   ];
 
   onServerAdded(newServer: Server) {
