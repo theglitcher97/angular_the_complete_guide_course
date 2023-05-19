@@ -3,6 +3,7 @@
   <hr>
   <div class="row">
     <div class="col-xs-12">
+      <button class="btn btn-danger" (click)="onRemoveFirstServerElement()">Remove first server element</button>
       <app-server-element *ngFor="let element of serverElements" [serverElement]="element">
         <!-- The next content -inside app-server-element- will be render on the ng-content inside app-server element--->
         <p>

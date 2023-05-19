@@ -27,4 +27,8 @@ export class AppComponent {
       content: newServer.content
     });
   }
+
+  onRemoveFirstServerElement() {
+    this.serverElements.shift()
+  }
 }
