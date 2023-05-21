@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 // @ts-ignore
 import NodeJS from '$GLOBAL$';
 
@@ -8,6 +8,10 @@ import NodeJS from '$GLOBAL$';
   styleUrls: ['./game-control.component.css'],
 })
 export class GameControlComponent {
+  @Output() evenNumberGeneratedEvent: EventEmitter<number> =
+    new EventEmitter<number>();
+  @Output() oddNumberGeneratedEvent: EventEmitter<number> =
+    new EventEmitter<number>();
   private counter = 0;
   private intervalCounter!: NodeJS.Timer;
   private intervalInitialized = false;
@@ -17,7 +21,9 @@ export class GameControlComponent {
       this.intervalInitialized = true;
       this.intervalCounter = setInterval(() => {
         this.counter++;
-        console.log(this.counter);
+        if (this.counter % 2 === 0)
+          this.evenNumberGeneratedEvent.emit(this.counter);
+        else this.oddNumberGeneratedEvent.emit(this.counter);
       }, 1000);
     }
   }
