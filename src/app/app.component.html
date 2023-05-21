@@ -2,5 +2,14 @@
   <div class="row">
     <app-game-control (evenNumberGeneratedEvent)="onIncomingNewEvenNumber($event)"
                       (oddNumberGeneratedEvent)="onIncomingNewOddNumber($event)"></app-game-control>
+    <hr>
+  </div>
+  <div class="row">
+    <div *ngFor="let number of evenAndOddNumbersList" class="col-md-12">
+      <app-even *ngIf="number % 2 === 0; else isOddNumber" [inputtedEvenNumber]="number"></app-even>
+      <ng-template #isOddNumber>
+        <app-odd [inputtedOddNumber]="number"></app-odd>
+      </ng-template>
+    </div>
   </div>
 </div>

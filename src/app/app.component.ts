@@ -3,21 +3,16 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  // styleUrls: ['./app.component.css']
-  styles: [
-    `
-      h1 {
-        color: teal;
-      }
-    `,
-  ],
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  public evenAndOddNumbersList: number[] = [];
+
   onIncomingNewEvenNumber(evenNumber: number) {
-    console.log(`even number -> ${evenNumber}`);
+    this.evenAndOddNumbersList.push(evenNumber);
   }
 
   onIncomingNewOddNumber(oddNumber: number) {
-    console.log(`odd number -> ${oddNumber}`);
+    this.evenAndOddNumbersList.push(oddNumber);
   }
 }
