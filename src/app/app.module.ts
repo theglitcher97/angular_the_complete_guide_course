@@ -3,9 +3,10 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
+import { HighlightDirective } from './directives/highlight.directive';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HighlightDirective],
   imports: [BrowserModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],

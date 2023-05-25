@@ -12,7 +12,8 @@
               class="list-group-item">{{odd}}</li>
         </div>
         <div *ngIf="!onlyOdd">
-          <li *ngFor="let even of evenNumbers" [ngClass]="{even: even % 2 === 0}" class="list-group-item">{{even}}</li>
+          <li *ngFor="let even of evenNumbers" [ngClass]="{even: even % 2 === 0}" class="list-group-item"
+              highlight>{{even}}</li>
         </div>
       </ul>
       <ng-template [ngIf]="onlyOdd">
