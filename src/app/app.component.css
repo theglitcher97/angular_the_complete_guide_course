@@ -2,10 +2,14 @@
   margin-top: 30px;
 }
 
+.odd, .even {
+  margin-bottom: 10px;
+}
+
 .odd {
-  transform: skewX(30deg);
+  transform: scale(1.1);
 }
 
 .even {
-  transform: rotate(180deg);
+  transform: scale(1.2);
 }
