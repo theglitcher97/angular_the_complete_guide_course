@@ -1,1 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+
+.raised {
+  box-shadow: 3px 3px 3px #ccc !important;
+  background-color: tomato !important;
+}
