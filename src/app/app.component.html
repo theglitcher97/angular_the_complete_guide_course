@@ -29,9 +29,30 @@
           </div>
         </ng-template>
       </ul>
-      <ng-template [ngIf]="onlyOdd">
+      <div>
+        <label> Small Group
+          <input [(ngModel)]="value" name="value" type="radio" value="5">
+        </label><br>
+        <label>Medium Group
+          <input [(ngModel)]="value" name="value" type="radio" value="30">
+        </label><br>
+        <label> Big Group
+          <input [(ngModel)]="value" name="value" type="radio" value="100">
+        </label><br>
+        <label>Default Value
+          <input [(ngModel)]="value" name="value" type="radio" value="50">
+        </label>
+
+      </div>
+      <div [ngSwitch]="value">
+        <p *ngSwitchCase="5"> Small Group</p>
+        <p *ngSwitchCase="30"> Medium Group</p>
+        <p *ngSwitchCase="100"> Big Group</p>
+        <p *ngSwitchDefault>Default value</p>
+      </div>
+      <!--<ng-template [ngIf]="onlyOdd">
         <p>Only odd</p>
-      </ng-template>
+      </ng-template>-->
     </div>
   </div>
 </div>
