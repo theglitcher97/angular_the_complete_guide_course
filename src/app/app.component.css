@@ -7,9 +7,9 @@
 }
 
 .odd {
-  transform: scale(1.1);
+  color: brown;
 }
 
 .even {
-  transform: scale(1.2);
+  color: blue;
 }
