@@ -1,4 +1,5 @@
-<div *ngIf="displayMessage" class="col-md-12 alert alert-success">
+<div *ngIf="displayMessage" [ngClass]="{'alert-success': action.toLowerCase() === 'add', 'alert-info': action.toLowerCase() === 'edit'}"
+     class="col-md-12 alert">
   <p>{{newHabitAddedMessage}}</p>
 </div>
 <div class="col-md-6">

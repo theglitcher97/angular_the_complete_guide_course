@@ -24,6 +24,7 @@ export class AddHabitComponent implements AfterViewInit, OnInit, OnChanges {
   @ViewChild('habitTimesADay') habitTimesADay!: ElementRef;
   @ViewChild('habitDaysPerWeek') habitDaysPerWeek!: ElementRef;
   @Output() newHabitAddedEvent: EventEmitter<Habit> = new EventEmitter<Habit>();
+  @Output() onHabitEditedEvent: EventEmitter<Habit> = new EventEmitter<Habit>();
   public newHabitAddedMessage = 'New habit was added successfully!';
   public displayMessage = false;
   public action!: string;
@@ -52,9 +53,20 @@ export class AddHabitComponent implements AfterViewInit, OnInit, OnChanges {
 
     if (!this.isHabitValid(name, impact, times_a_day, days_per_week)) return;
 
-    this.newHabitAddedEvent.emit(
-      new Habit(name, impact, times_a_day, days_per_week)
-    );
+    if (this.action.toLowerCase() === 'add') {
+      this.newHabitAddedEvent.emit(
+        new Habit(name, impact, times_a_day, days_per_week)
+      );
+    } else if (this.habit) {
+      this.habit.name = name;
+      this.habit.impact = impact;
+      this.habit.times_a_day = times_a_day;
+      this.habit.days_per_week = days_per_week;
+
+      this.onHabitEditedEvent.emit(this.habit);
+      this.newHabitAddedMessage =
+        'Habit ' + this.habit?.name + ' was edited successfully!';
+    }
 
     this.displayMessage = true;
     setTimeout(() => (this.displayMessage = false), 1000);

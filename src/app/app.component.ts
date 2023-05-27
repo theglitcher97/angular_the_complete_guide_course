@@ -33,4 +33,10 @@ export class AppComponent {
     this.selectedTab = 'add-habit';
     this.habit = habit;
   }
+
+  onHabitEdited(habit1: Habit) {
+    console.log(habit1);
+    const index = this.habits.findIndex((habit) => habit.id === habit1.id);
+    if (index !== -1) this.habits[index] = habit1;
+  }
 }
