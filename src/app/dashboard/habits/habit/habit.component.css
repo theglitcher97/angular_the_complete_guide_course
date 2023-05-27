@@ -5,7 +5,7 @@
   align-items: center;
 }
 
-.habit-info p {
+.habit-info p, .habit-info > div {
   width: 22%;
   text-align: left;
   height: 20px;

@@ -1,10 +1,19 @@
 export class Habit {
+  static idCounter = 0;
+  private readonly _id: number;
+
   constructor(
     private _name: string,
     private _impact: ImpactEnum,
     private _times_a_day: number,
     private _days_per_week: number
-  ) {}
+  ) {
+    this._id = Habit.idCounter++;
+  }
+
+  public get id() {
+    return this._id;
+  }
 
   get name(): string {
     return this._name;
