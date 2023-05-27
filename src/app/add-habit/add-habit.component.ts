@@ -35,7 +35,7 @@ export class AddHabitComponent {
     );
 
     this.displayMessage = true;
-    setTimeout(() => (this.displayMessage = false), 2000);
+    setTimeout(() => (this.displayMessage = false), 1000);
 
     this.resetForm();
   }

@@ -4,4 +4,6 @@
   <h2>Times a day</h2>
   <h2>Days per week</h2>
 </div>
-<app-habit *ngFor="let habit of habitsList; index as i" [habit]="habit" [index]="(i+1)"></app-habit>
+<ng-template [ngIf]="habitsList">
+  <app-habit *ngFor="let habit of habitsList; index as i" [habit]="habit" [index]="(i+1)"></app-habit>
+</ng-template>

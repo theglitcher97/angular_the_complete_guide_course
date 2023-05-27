@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Habit, ImpactEnum } from '../models/habit';
+import { Component, Input } from '@angular/core';
+import { Habit } from '../models/habit';
 
 @Component({
   selector: 'app-habits',
@@ -7,9 +7,5 @@ import { Habit, ImpactEnum } from '../models/habit';
   styleUrls: ['./habits.component.css'],
 })
 export class HabitsComponent {
-  public habitsList: Habit[] = [
-    new Habit('Exercise', ImpactEnum.positive, 4, 4),
-    new Habit('Drink Alcohol', ImpactEnum.negative, 2, 4),
-    new Habit('Go to work', ImpactEnum.neutral, 1, 5),
-  ];
+  @Input() habitsList!: Habit[];
 }

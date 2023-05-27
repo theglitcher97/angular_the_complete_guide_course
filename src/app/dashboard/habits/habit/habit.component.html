@@ -1,6 +1,11 @@
 <div [ngClass]="{oddHabit: index % 2 !== 0}" class="habit-info">
-  <p>{{habit.name}}</p>
-  <p>{{habit.impact}}</p>
+  <p><span class="glyphicon glyphicon-option-vertical"></span> {{habit.name}}</p>
+  <p>
+    <span *ngIf="habit.impact ==='positive'" class="glyphicon glyphicon-plus-sign" style="color: #00b000"></span>
+    <span *ngIf="habit.impact ==='negative'" class="glyphicon glyphicon-minus-sign" style="color: red"></span>
+    <span *ngIf="habit.impact ==='neutral'" class="glyphicon glyphicon-question-sign" style="color: #ccc"></span>
+    {{habit.impact}}
+  </p>
   <p>{{habit.times_a_day}}</p>
   <p>{{habit.days_per_week}}</p>
 </div>

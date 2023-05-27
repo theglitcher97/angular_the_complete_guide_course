@@ -26,8 +26,8 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <app-dashboard *ngIf="selectedTab==='dashboard'"></app-dashboard>
-      <app-add-habit *ngIf="selectedTab==='add-habit'"></app-add-habit>
+      <app-dashboard *ngIf="selectedTab==='dashboard'" [habits]="habits"></app-dashboard>
+      <app-add-habit (newHabitAddedEvent)="onNewHabitCreated($event)" *ngIf="selectedTab==='add-habit'"></app-add-habit>
     </div>
   </div>
 </div>

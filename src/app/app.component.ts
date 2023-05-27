@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Habit, ImpactEnum } from './dashboard/models/habit';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +8,18 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   public selectedTab = 'dashboard';
+  public habit!: Habit;
+  public habits: Habit[] = [
+    new Habit('Exercise', ImpactEnum.positive, 4, 4),
+    new Habit('Drink Alcohol', ImpactEnum.negative, 2, 4),
+    new Habit('Go to work', ImpactEnum.neutral, 1, 5),
+  ];
 
   onNavigate(tab: string) {
     this.selectedTab = tab;
+  }
+
+  onNewHabitCreated(habit: Habit) {
+    this.habits.push(habit);
   }
 }
