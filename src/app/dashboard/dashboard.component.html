@@ -1,3 +1,4 @@
 <h1>Habits Dashboard</h1>
 <hr>
-<app-habits (onRemoveHabit)="onRemoveHabit($event)" [habitsList]="habits"></app-habits>
+<app-habits (onEditHabit)="onEditHabitAction($event)" (onRemoveHabit)="onRemoveHabit($event)"
+            [habitsList]="habits"></app-habits>

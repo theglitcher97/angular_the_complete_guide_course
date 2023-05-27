@@ -1,11 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  Output,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Habit } from '../../models/habit';
 
 @Component({
@@ -13,22 +6,19 @@ import { Habit } from '../../models/habit';
   templateUrl: './habit.component.html',
   styleUrls: ['./habit.component.css'],
 })
-export class HabitComponent implements OnChanges {
+export class HabitComponent {
   @Input() habit!: Habit;
   @Input() index!: number;
   @Output() onHabitDeletedEvent: EventEmitter<Habit> =
     new EventEmitter<Habit>();
-
-  ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
-  }
+  @Output() onEditHabitEvent: EventEmitter<Habit> = new EventEmitter<Habit>();
 
   onDropdownClicked(dropdown: HTMLDivElement) {
     dropdown.classList.toggle('open');
   }
 
   onEditHabit(habit: Habit) {
-    console.log('editing habit');
+    this.onEditHabitEvent.emit(habit);
   }
 
   onDeleteHabit(habit: Habit) {

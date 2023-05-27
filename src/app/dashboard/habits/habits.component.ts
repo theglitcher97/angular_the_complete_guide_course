@@ -9,8 +9,13 @@ import { Habit } from '../models/habit';
 export class HabitsComponent {
   @Input() habitsList!: Habit[];
   @Output() onRemoveHabit: EventEmitter<Habit> = new EventEmitter<Habit>();
+  @Output() onEditHabit: EventEmitter<Habit> = new EventEmitter<Habit>();
 
-  onHabitEvent(habit: Habit) {
+  onRemoveHabitEvent(habit: Habit) {
     this.onRemoveHabit.emit(habit);
+  }
+
+  onEditingHabitEvent(habit: Habit) {
+    this.onEditHabit.emit(habit);
   }
 }

@@ -8,7 +8,7 @@ import { Habit, ImpactEnum } from './dashboard/models/habit';
 })
 export class AppComponent {
   public selectedTab = 'dashboard';
-  public habit!: Habit;
+  public habit!: Habit | undefined;
   public habits: Habit[] = [
     new Habit('Exercise', ImpactEnum.positive, 4, 4),
     new Habit('Drink Alcohol', ImpactEnum.negative, 2, 4),
@@ -17,6 +17,7 @@ export class AppComponent {
 
   onNavigate(tab: string) {
     this.selectedTab = tab;
+    this.habit = undefined;
   }
 
   onNewHabitCreated(habit: Habit) {
@@ -26,5 +27,10 @@ export class AppComponent {
   onRemoveHabit(habit: Habit) {
     let index = this.habits.findIndex((h) => habit.id === h.id);
     if (index !== -1) this.habits.splice(index, 1);
+  }
+
+  onEditHabit(habit: Habit) {
+    this.selectedTab = 'add-habit';
+    this.habit = habit;
   }
 }

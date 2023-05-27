@@ -6,7 +6,8 @@
     <h2>Days per week</h2>
   </div>
   <ng-template [ngIf]="habitsList">
-    <app-habit (onHabitDeletedEvent)="onHabitEvent($event)" *ngFor="let habit of habitsList; index as i" [habit]="habit"
+    <app-habit (onEditHabitEvent)="onEditingHabitEvent($event)" (onHabitDeletedEvent)="onRemoveHabitEvent($event)"
+               *ngFor="let habit of habitsList; index as i" [habit]="habit"
                [index]="(i+1)"></app-habit>
   </ng-template>
 </ng-template>

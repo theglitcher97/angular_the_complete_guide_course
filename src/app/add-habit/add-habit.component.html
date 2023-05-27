@@ -29,8 +29,11 @@
     <hr>
 
     <div class="btn-group" role="group">
-      <button class="btn btn-default" type="button">Cancel</button>
-      <button (click)="onSubmit()" class="btn btn-success btn-group-lg" type="button">Add</button>
+      <button class="btn btn-default" type="button">Reset</button>
+      <button (click)="onSubmit()"
+              [ngClass]="{'btn-success': action.toLowerCase() === 'add', 'btn-info': action.toLowerCase() === 'edit'}"
+              class="btn btn-group-lg"
+              type="button">{{action}}</button>
     </div>
   </form>
 </div>

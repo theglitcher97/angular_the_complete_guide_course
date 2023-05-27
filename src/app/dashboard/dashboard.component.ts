@@ -16,6 +16,7 @@ import { Habit } from './models/habit';
 export class DashboardComponent implements OnChanges {
   @Input() habits!: Habit[];
   @Output() onRemovedHabit: EventEmitter<Habit> = new EventEmitter<Habit>();
+  @Output() onEditHabit: EventEmitter<Habit> = new EventEmitter<Habit>();
 
   ngOnChanges({ habits }: SimpleChanges): void {
     if (habits && habits.currentValue) {
@@ -25,5 +26,9 @@ export class DashboardComponent implements OnChanges {
 
   onRemoveHabit(habit: Habit) {
     this.onRemovedHabit.emit(habit);
+  }
+
+  onEditHabitAction(habit: Habit) {
+    this.onEditHabit.emit(habit);
   }
 }

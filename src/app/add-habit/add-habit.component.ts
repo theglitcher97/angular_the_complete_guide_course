@@ -1,8 +1,13 @@
 import {
+  AfterViewInit,
   Component,
   ElementRef,
   EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
   Output,
+  SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import { Habit, ImpactEnum } from '../dashboard/models/habit';
@@ -12,7 +17,8 @@ import { Habit, ImpactEnum } from '../dashboard/models/habit';
   templateUrl: './add-habit.component.html',
   styleUrls: ['./add-habit.component.css'],
 })
-export class AddHabitComponent {
+export class AddHabitComponent implements AfterViewInit, OnInit, OnChanges {
+  @Input() habit!: Habit | undefined;
   @ViewChild('habitName') habitName!: ElementRef;
   @ViewChild('habitImpact') habitImpact!: ElementRef;
   @ViewChild('habitTimesADay') habitTimesADay!: ElementRef;
@@ -20,7 +26,23 @@ export class AddHabitComponent {
   @Output() newHabitAddedEvent: EventEmitter<Habit> = new EventEmitter<Habit>();
   public newHabitAddedMessage = 'New habit was added successfully!';
   public displayMessage = false;
+  public action!: string;
   protected readonly ImpactEnum = ImpactEnum;
+
+  ngOnChanges({ habit }: SimpleChanges) {
+    if (habit && habit.currentValue) this.action = 'Edit';
+  }
+
+  ngOnInit() {
+    if (!this.action) this.action = 'Add';
+  }
+
+  ngAfterViewInit() {
+    if (this.habit) {
+      this.fillForm(this.habit);
+      this.action = 'Edit';
+    }
+  }
 
   onSubmit() {
     const name = this.habitName.nativeElement.value as string;
@@ -56,5 +78,12 @@ export class AddHabitComponent {
     this.habitImpact.nativeElement.value = this.ImpactEnum.positive;
     this.habitTimesADay.nativeElement.value = 1;
     this.habitDaysPerWeek.nativeElement.value = 1;
+  }
+
+  private fillForm(habit: Habit) {
+    this.habitName.nativeElement.value = habit.name;
+    this.habitImpact.nativeElement.value = habit.impact;
+    this.habitTimesADay.nativeElement.value = habit.times_a_day;
+    this.habitDaysPerWeek.nativeElement.value = habit.days_per_week;
   }
 }
