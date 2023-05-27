@@ -1,4 +1,4 @@
-<div class="habit-info">
+<div [ngClass]="{oddHabit: index % 2 !== 0}" class="habit-info">
   <p>{{habit.name}}</p>
   <p>{{habit.impact}}</p>
   <p>{{habit.times_a_day}}</p>

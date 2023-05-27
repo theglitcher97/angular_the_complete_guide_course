@@ -8,4 +8,5 @@ import { Habit } from '../../models/habit';
 })
 export class HabitComponent {
   @Input() habit!: Habit;
+  @Input() index!: number;
 }
