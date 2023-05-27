@@ -22,4 +22,9 @@ export class AppComponent {
   onNewHabitCreated(habit: Habit) {
     this.habits.push(habit);
   }
+
+  onRemoveHabit(habit: Habit) {
+    let index = this.habits.findIndex((h) => habit.id === h.id);
+    if (index !== -1) this.habits.splice(index, 1);
+  }
 }
