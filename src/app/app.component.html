@@ -4,22 +4,10 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
-          <li class="active"><a href="#"> Dashboard </a></li>
-          <li class=""><a href="#">Add Habit</a></li>
-          <!-- don't forget to add the 'open' class-->
-          <!-- <li class="dropdown">
-             <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle" data-toggle="dropdown" href="#"
-                role="button">Dropdown <span class="caret"></span></a>
-             <ul class="dropdown-menu">
-               <li><a href="#">Action</a></li>
-               <li><a href="#">Another action</a></li>
-               <li><a href="#">Something else here</a></li>
-               <li class="divider" role="separator"></li>
-               <li><a href="#">Separated link</a></li>
-               <li class="divider" role="separator"></li>
-               <li><a href="#">One more separated link</a></li>
-             </ul>
-           </li>-->
+          <li (click)="onNavigate('dashboard')" [ngClass]="{active: selectedTab==='dashboard'}"><a href="#">
+            Dashboard </a></li>
+          <li (click)="onNavigate('add-habit')" [ngClass]="{active: selectedTab==='add-habit'}"><a href="#">Add
+            Habit</a></li>
         </ul>
 
         <!-- Search Bar-->
@@ -38,7 +26,8 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <app-dashboard></app-dashboard>
+      <app-dashboard *ngIf="selectedTab==='dashboard'"></app-dashboard>
+      <app-add-habit *ngIf="selectedTab==='add-habit'"></app-add-habit>
     </div>
   </div>
 </div>

@@ -1,0 +1,33 @@
+<div class="col-md-6">
+  <form>
+    <div class="form-group">
+      <label for="name">Enter your habit</label>
+      <input #habitName class="form-control" id="name" minlength="5" placeholder="habit name" type="text">
+    </div>
+
+    <div class="form-group">
+      <label for="habit-impact">How this habit impact your life</label><br>
+      <select #habitImpact id="habit-impact" name="impact">
+        <option [value]="ImpactEnum.positive">{{ImpactEnum.positive  | titlecase}}</option>
+        <option [value]="ImpactEnum.negative">{{ImpactEnum.negative  | titlecase}}</option>
+        <option [value]="ImpactEnum.neutral">{{ImpactEnum.neutral  | titlecase}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="times_a_day">How many times a day do you repeat this action</label>
+      <input #habitTimesADay class="form-control" id="times_a_day" min="1" type="number">
+    </div>
+
+    <div class="form-group">
+      <label for="days_per_week">How many days per week do you repeat this action</label>
+      <input #habitDaysPerWeek class="form-control" id="days_per_week" min="1" type="number">
+    </div>
+    <hr>
+
+    <div class="btn-group" role="group">
+      <button class="btn btn-default" type="button">Cancel</button>
+      <button (click)="onSubmit()" class="btn btn-success btn-group-lg" type="button">Add</button>
+    </div>
+  </form>
+</div>
