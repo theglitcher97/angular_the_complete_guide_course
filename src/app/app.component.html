@@ -29,7 +29,8 @@
       <app-dashboard (onEditHabit)="onEditHabit($event)" (onRemovedHabit)="onRemoveHabit($event)"
                      *ngIf="selectedTab==='dashboard'"
                      [habits]="habits"></app-dashboard>
-      <app-add-habit (newHabitAddedEvent)="onNewHabitCreated($event)" *ngIf="selectedTab==='add-habit'"
+      <app-add-habit (newHabitAddedEvent)="onNewHabitCreated($event)"
+                     (onHabitEditedEvent)="onHabitEdited($event)" *ngIf="selectedTab==='add-habit'"
                      [habit]="habit"></app-add-habit>
     </div>
   </div>
