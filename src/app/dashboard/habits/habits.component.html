@@ -1,1 +1,7 @@
-<p>habits works!</p>
+<div class="habits-header">
+  <h2>Name</h2>
+  <h2>Impact</h2>
+  <h2>Times a day</h2>
+  <h2>Days per week</h2>
+</div>
+<app-habit *ngFor="let habit of habitsList" [habit]="habit"></app-habit>

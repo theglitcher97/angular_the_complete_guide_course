@@ -1,0 +1,10 @@
+.habit-info {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.habit-info p {
+  width: 22%;
+  text-align: left;
+}

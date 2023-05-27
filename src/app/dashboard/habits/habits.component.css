@@ -1,0 +1,9 @@
+.habits-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.3rem;
+}
+
+.habits-header h2 {
+  width: 25%;
+}
