@@ -21,11 +21,6 @@ export class AppComponent implements OnInit {
     this.habit = undefined;
   }
 
-  onNewHabitCreated(habit: Habit) {
-    this.habits.push(habit);
-    this.habitsCopy = [...this.habits];
-  }
-
   onRemoveHabit(habit: Habit) {
     let index = this.habits.findIndex((h) => habit.id === h.id);
     if (index !== -1) {
@@ -38,14 +33,6 @@ export class AppComponent implements OnInit {
   onEditHabit(habit: Habit) {
     this.selectedTab = 'add-habit';
     this.habit = habit;
-  }
-
-  onHabitEdited(habit1: Habit) {
-    const index = this.habits.findIndex((habit) => habit.id === habit1.id);
-    if (index !== -1) {
-      this.habits[index] = habit1;
-      this.habitsCopy = [...this.habits];
-    }
   }
 
   onSearchHabit(name: string) {

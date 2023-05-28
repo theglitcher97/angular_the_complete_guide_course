@@ -1,12 +1,12 @@
 import { Habit, ImpactEnum } from '../../dashboard/models/habit';
 
 export class HabitsService {
-  private habitsCopy!: Habit[];
-  private habits: Habit[] = [
+  public habits: Habit[] = [
     new Habit('Exercise', ImpactEnum.positive, 4, 4),
     new Habit('Drink Alcohol', ImpactEnum.negative, 2, 4),
     new Habit('Go to work', ImpactEnum.neutral, 1, 5),
   ];
+  private habitsCopy!: Habit[];
 
   public addHabit(habit: Habit) {
     this.habits.push(habit);
