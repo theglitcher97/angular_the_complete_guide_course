@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Habit, ImpactEnum } from './dashboard/models/habit';
+import { Habit } from './dashboard/models/habit';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +10,7 @@ export class AppComponent implements OnInit {
   public selectedTab = 'dashboard';
   public habit!: Habit | undefined;
   public habitsCopy!: Habit[];
-  public habits: Habit[] = [
-    new Habit('Exercise', ImpactEnum.positive, 4, 4),
-    new Habit('Drink Alcohol', ImpactEnum.negative, 2, 4),
-    new Habit('Go to work', ImpactEnum.neutral, 1, 5),
-  ];
+  public habits: Habit[] = [];
 
   ngOnInit() {
     this.habitsCopy = [...this.habits];

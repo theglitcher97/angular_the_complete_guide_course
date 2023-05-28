@@ -7,11 +7,18 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HabitsComponent } from './dashboard/habits/habits.component';
 import { HabitComponent } from './dashboard/habits/habit/habit.component';
 import { AddHabitComponent } from './add-habit/add-habit.component';
+import { HabitsService } from './shared/services/habits.service';
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent, HabitsComponent, HabitComponent, AddHabitComponent],
+  declarations: [
+    AppComponent,
+    DashboardComponent,
+    HabitsComponent,
+    HabitComponent,
+    AddHabitComponent,
+  ],
   imports: [BrowserModule, FormsModule],
-  providers: [],
+  providers: [HabitsService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
