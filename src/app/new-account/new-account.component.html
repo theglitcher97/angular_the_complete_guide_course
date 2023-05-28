@@ -3,20 +3,20 @@
     <div class="form-group">
       <label>Account Name</label>
       <input
-        type="text"
+        #accountName
         class="form-control"
-        #accountName>
+        type="text">
     </div>
     <div class="form-group">
-      <select class="form-control" #status>
-        <option value="active">Active</option>
-        <option value="inactive">Inactive</option>
-        <option value="hidden">Hidden</option>
+      <select #status class="form-control">
+        <option [value]="StatusEnum.active">Active</option>
+        <option [value]="StatusEnum.inactive">Inactive</option>
+        <option [value]="StatusEnum.unknown">Hidden</option>
       </select>
     </div>
     <button
-      class="btn btn-primary"
-      (click)="onCreateAccount(accountName.value, status.value)">
+      (click)="onCreateAccount(accountName.value, status.value)"
+      class="btn btn-primary">
       Add Account
     </button>
   </div>

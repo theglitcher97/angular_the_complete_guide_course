@@ -1,24 +1,26 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { LoggingService } from '../services/logging.service';
+import { AccountsService } from '../services/accounts.service';
+import { StatusEnum } from '../shared/enums/status.enum';
 
 @Component({
   selector: 'app-new-account',
   templateUrl: './new-account.component.html',
   styleUrls: ['./new-account.component.css'],
+  providers: [LoggingService],
 })
-export class NewAccountComponent implements OnInit {
+export class NewAccountComponent {
   @Output() accountAdded = new EventEmitter<{ name: string; status: string }>();
-  private logginServer!: LoggingService;
+  protected readonly StatusEnum = StatusEnum;
 
-  ngOnInit() {
-    this.logginServer = new LoggingService();
-  }
+  constructor(
+    private loggingService: LoggingService,
+    private accountService: AccountsService
+  ) {}
 
   onCreateAccount(accountName: string, accountStatus: string) {
-    this.accountAdded.emit({
-      name: accountName,
-      status: accountStatus,
-    });
-    this.logginServer.logStatusChange(accountStatus);
+    let status = accountStatus as StatusEnum;
+    this.accountService.addAccount(accountName, status);
+    this.loggingService.logStatusChange(accountStatus);
   }
 }

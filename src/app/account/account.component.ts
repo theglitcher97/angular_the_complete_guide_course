@@ -1,9 +1,13 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { LoggingService } from '../services/logging.service';
+import { AccountsService } from '../services/accounts.service';
+import { StatusEnum } from '../shared/enums/status.enum';
 
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.css'],
+  providers: [LoggingService],
 })
 export class AccountComponent {
   @Input() account!: { name: string; status: string };
@@ -12,9 +16,16 @@ export class AccountComponent {
     id: number;
     newStatus: string;
   }>();
+  protected readonly StatusEnum = StatusEnum;
 
-  onSetTo(status: string) {
+  constructor(
+    private loggingService: LoggingService,
+    private accountService: AccountsService
+  ) {}
+
+  onSetTo(status: StatusEnum) {
+    this.accountService.updateAccountState(this.id, status);
     this.statusChanged.emit({ id: this.id, newStatus: status });
-    console.log('A server status changed, new status: ' + status);
+    this.loggingService.logStatusChange(status);
   }
 }
