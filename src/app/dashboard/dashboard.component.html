@@ -1,6 +1,22 @@
 <h1>Habits Dashboard</h1>
 <hr>
-
+<div *ngIf="progressBar" class="progress">
+  <div [ngClass]="{
+        'progress-bar-success': progressBar >= 70,
+        'progress-bar-info': progressBar >= 50 && progressBar < 70,
+        'progress-bar-warning': progressBar >= 30 && progressBar < 50,
+        'progress-bar-danger': progressBar < 30,
+       }"
+       [ngStyle]="{'width': progressBar+'%'}"
+       aria-valuemax="100"
+       aria-valuemin="0"
+       aria-valuenow="40"
+       class="progress-bar"
+       role="progressbar"
+  >
+    <span class="sr-only">40% Complete (success)</span>
+  </div>
+</div>
 <hr>
 <app-habits (onEditHabit)="onEditHabitAction($event)" (onRemoveHabit)="onRemoveHabit($event)"
             [habitsList]="habits"></app-habits>

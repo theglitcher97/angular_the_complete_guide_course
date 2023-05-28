@@ -34,6 +34,7 @@ export class AppComponent implements OnInit {
     let index = this.habits.findIndex((h) => habit.id === h.id);
     if (index !== -1) {
       this.habits.splice(index, 1);
+      this.habits = [...this.habits];
       this.habitsCopy = [...this.habits];
     }
   }
