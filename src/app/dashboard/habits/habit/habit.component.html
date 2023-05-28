@@ -1,4 +1,4 @@
-<div [ngClass]="{oddHabit: index % 2 !== 0}" class="habit-info">
+<div [ngClass]="{oddHabit: habit.id % 2 === 0}" class="habit-info">
   <div style="display: flex">
     <div #dropdown (click)="onDropdownClicked(dropdown)" class="dropdown" style="width: 10%; cursor: pointer">
       <span class="glyphicon glyphicon-option-vertical"></span>

@@ -2,10 +2,7 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
-  Input,
-  OnChanges,
   OnInit,
-  SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import { Habit, ImpactEnum } from '../dashboard/models/habit';
@@ -16,8 +13,8 @@ import { HabitsService } from '../shared/services/habits.service';
   templateUrl: './add-habit.component.html',
   styleUrls: ['./add-habit.component.css'],
 })
-export class AddHabitComponent implements AfterViewInit, OnInit, OnChanges {
-  @Input() habit!: Habit | undefined;
+export class AddHabitComponent implements AfterViewInit, OnInit {
+  public habit!: Habit | undefined;
   @ViewChild('habitName') habitName!: ElementRef;
   @ViewChild('habitImpact') habitImpact!: ElementRef;
   @ViewChild('habitTimesADay') habitTimesADay!: ElementRef;
@@ -29,12 +26,10 @@ export class AddHabitComponent implements AfterViewInit, OnInit, OnChanges {
 
   constructor(private habitsService: HabitsService) {}
 
-  ngOnChanges({ habit }: SimpleChanges) {
-    if (habit && habit.currentValue) this.action = 'Edit';
-  }
-
   ngOnInit() {
     if (!this.action) this.action = 'Add';
+    this.habit = this.habitsService.habit;
+    if (this.habit) this.action = 'Edit';
   }
 
   ngAfterViewInit() {
@@ -93,9 +88,11 @@ export class AddHabitComponent implements AfterViewInit, OnInit, OnChanges {
   }
 
   private fillForm(habit: Habit) {
-    this.habitName.nativeElement.value = habit.name;
-    this.habitImpact.nativeElement.value = habit.impact;
-    this.habitTimesADay.nativeElement.value = habit.times_a_day;
-    this.habitDaysPerWeek.nativeElement.value = habit.days_per_week;
+    if (this.habit) {
+      this.habitName.nativeElement.value = habit.name;
+      this.habitImpact.nativeElement.value = habit.impact;
+      this.habitTimesADay.nativeElement.value = habit.times_a_day;
+      this.habitDaysPerWeek.nativeElement.value = habit.days_per_week;
+    }
   }
 }

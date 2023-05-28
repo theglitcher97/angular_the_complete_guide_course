@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Habit } from '../../models/habit';
+import { HabitsService } from '../../../shared/services/habits.service';
 
 @Component({
   selector: 'app-habit',
@@ -8,20 +9,18 @@ import { Habit } from '../../models/habit';
 })
 export class HabitComponent {
   @Input() habit!: Habit;
-  @Input() index!: number;
-  @Output() onHabitDeletedEvent: EventEmitter<Habit> =
-    new EventEmitter<Habit>();
-  @Output() onEditHabitEvent: EventEmitter<Habit> = new EventEmitter<Habit>();
+
+  constructor(private habitsService: HabitsService) {}
 
   onDropdownClicked(dropdown: HTMLDivElement) {
     dropdown.classList.toggle('open');
   }
 
   onEditHabit(habit: Habit) {
-    this.onEditHabitEvent.emit(habit);
+    this.habitsService.habitSelectedToEdit(habit);
   }
 
   onDeleteHabit(habit: Habit) {
-    this.onHabitDeletedEvent.emit(habit);
+    this.habitsService.removeHabit(habit);
   }
 }

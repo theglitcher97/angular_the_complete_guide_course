@@ -6,6 +6,8 @@ export class HabitsService {
     new Habit('Drink Alcohol', ImpactEnum.negative, 2, 4),
     new Habit('Go to work', ImpactEnum.neutral, 1, 5),
   ];
+  public selectedTab = 'dashboard';
+  public habit!: Habit | undefined;
   private habitsCopy!: Habit[];
 
   public addHabit(habit: Habit) {
@@ -19,6 +21,12 @@ export class HabitsService {
       this.habits[index] = habit;
       this.habitsCopy = [...this.habits];
     }
+  }
+
+  public habitSelectedToEdit(habit: Habit) {
+    this.selectedTab = 'add-habit';
+    this.habit = habit;
+    console.log(this.selectedTab);
   }
 
   public removeHabit(habit: Habit) {
