@@ -14,6 +14,5 @@ export class HabitsComponent implements OnInit {
 
   ngOnInit() {
     this.habitsList = this.habitsService.habits;
-    this.habitsService.calculateProgressBar();
   }
 }

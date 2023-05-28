@@ -44,6 +44,7 @@ export class HabitsService implements OnInit {
       this.habits.splice(index, 1);
       this.habitsCopy = [...this.habits];
     }
+    this.calculateProgressBar();
   }
 
   public onSearchHabit(name: string) {

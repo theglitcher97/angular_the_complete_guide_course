@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.habitsCopy = [...this.habits];
+    this.habitsService.calculateProgressBar();
   }
 
   onNavigate(tab: string) {
