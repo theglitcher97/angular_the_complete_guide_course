@@ -13,9 +13,9 @@
         <!-- Search Bar-->
         <form class="navbar-form navbar-right">
           <div class="form-group">
-            <input class="form-control" placeholder="Search" type="text">
+            <input #search (keyup)="onSearchHabit(search.value)" class="form-control" placeholder="Search" type="text">
           </div>
-          <button class="btn btn-default" type="submit">Submit</button>
+          <button (click)="onSearchHabit(search.value)" class="btn btn-default" type="button">Search</button>
         </form>
 
       </div>
