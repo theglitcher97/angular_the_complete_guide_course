@@ -1,8 +1,8 @@
 import { Habit, ImpactEnum } from '../../dashboard/models/habit';
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
-export class HabitsService implements OnInit {
+export class HabitsService {
   public habits: Habit[] = [
     new Habit('Exercise', ImpactEnum.positive, 4, 4),
     new Habit('Drink Alcohol', ImpactEnum.negative, 2, 4),
@@ -14,8 +14,8 @@ export class HabitsService implements OnInit {
   private habitsCopy!: Habit[];
   private minProgressBar: number = 1;
 
-  ngOnInit(): void {
-    this.progressBarValue = 0;
+  constructor() {
+    this.habitsCopy = [...this.habits];
   }
 
   public addHabit(habit: Habit) {
@@ -49,13 +49,16 @@ export class HabitsService implements OnInit {
 
   public onSearchHabit(name: string) {
     this.habits = [...this.habitsCopy];
-    this.habits = this.habits.filter((habit) =>
-      habit.name.toLowerCase().includes(name)
-    );
+    this.habitsCopy.forEach((habit) => {
+      if (!habit.name.toLowerCase().includes(name)) {
+        let index = this.habits.findIndex((h) => h.id === habit.id);
+        if (index !== -1) this.habits.splice(index, 1);
+      }
+    });
     this.calculateProgressBar();
   }
 
-  calculateProgressBar() {
+  public calculateProgressBar() {
     let totalPoints = 0,
       positivePoints = 0,
       negativePoints = 0,

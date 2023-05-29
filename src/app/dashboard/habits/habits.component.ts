@@ -10,7 +10,7 @@ import { HabitsService } from '../../shared/services/habits.service';
 export class HabitsComponent implements OnInit {
   public habitsList!: Habit[];
 
-  constructor(private habitsService: HabitsService) {}
+  constructor(public habitsService: HabitsService) {}
 
   ngOnInit() {
     this.habitsList = this.habitsService.habits;
