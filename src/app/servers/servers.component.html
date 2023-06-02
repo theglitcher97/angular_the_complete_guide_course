@@ -10,8 +10,10 @@
     <div class="list-group">
       <a
         *ngFor="let server of servers"
+        [queryParams]="{'allowEdit': 1}"
+        [routerLink]="[server.id, 'edit']"
         class="list-group-item"
-        href="#">
+        fragment="loading">
         {{ server.name }}
       </a>
     </div>
