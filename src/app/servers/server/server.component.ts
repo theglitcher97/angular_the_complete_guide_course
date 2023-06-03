@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ServersService } from '../servers.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-server',
@@ -13,12 +13,21 @@ export class ServerComponent implements OnInit {
 
   constructor(
     private serversService: ServersService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.server = this.serversService.getServer(+params['id']);
+    });
+  }
+
+  onNavigate() {
+    this.router.navigate(['edit'], {
+      relativeTo: this.activatedRoute,
+      queryParamsHandling: 'preserve', // this preserve the queryParams on navigating
+      // queryParamsHandling: 'merge', // this merge old and new query params and pass them to the loaded route
     });
   }
 }

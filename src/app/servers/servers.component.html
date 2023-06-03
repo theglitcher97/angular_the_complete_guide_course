@@ -1,16 +1,12 @@
 <div class="row">
   <div class="col-xs-12">
-    <!-- a leading slash means this is an absolute path -->
-    <!--<a routerLink="/servers">absolute path</a>-->
-    <!-- no leading slash means relative path (relative to the current path) -->
-    <!--<a routerLink="servers">relative path</a>-->
     <button (click)="onReloadPage()" class="btn btn-primary">Reload</button>
   </div>
   <div class="col-xs-12 col-sm-4">
     <div class="list-group">
       <a
         *ngFor="let server of servers"
-        [queryParams]="{'allowEdit': 1}"
+        [queryParams]="{'allowEdit': server.id === 3}"
         [routerLink]="[server.id]"
         class="list-group-item"
         fragment="loading">
