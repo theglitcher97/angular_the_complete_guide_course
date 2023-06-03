@@ -9,7 +9,6 @@ import { Subscription } from 'rxjs';
 })
 export class UserComponent implements OnInit, OnDestroy {
   user!: { id: number; name: string };
-  protected readonly Math = Math;
   private subscriptions: Subscription = new Subscription();
 
   constructor(private activeRoute: ActivatedRoute) {}

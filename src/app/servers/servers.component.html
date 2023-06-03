@@ -11,7 +11,7 @@
       <a
         *ngFor="let server of servers"
         [queryParams]="{'allowEdit': 1}"
-        [routerLink]="[server.id, 'edit']"
+        [routerLink]="[server.id]"
         class="list-group-item"
         fragment="loading">
         {{ server.name }}
