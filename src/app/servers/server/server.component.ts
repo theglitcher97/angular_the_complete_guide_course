@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ServersService } from '../servers.service';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Data, Router } from '@angular/router';
+
+export interface Server {
+  id: number;
+  name: string;
+  status: string;
+}
 
 @Component({
   selector: 'app-server',
@@ -9,7 +15,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
   styleUrls: ['./server.component.css'],
 })
 export class ServerComponent implements OnInit {
-  server!: { id: number; name: string; status: string } | undefined;
+  server!: Server | undefined;
 
   constructor(
     private serversService: ServersService,
@@ -18,9 +24,12 @@ export class ServerComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe((params: Params) => {
-      this.server = this.serversService.getServer(+params['id']);
+    this.activatedRoute.data.subscribe((data: Data) => {
+      this.server = data['server'];
     });
+    /* this.activatedRoute.params.subscribe((params: Params) => {
+       this.server = this.serversService.getServer(+params['id']);
+     });*/
   }
 
   onNavigate() {
