@@ -12,6 +12,7 @@ import { ServerComponent } from './servers/server/server.component';
 import { ServersService } from './servers/servers.service';
 import { PageNotFoundComponent } from './not-found/page-not-found.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ErrorComponentComponent } from './error-component/error-component.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { AppRoutingModule } from './app-routing.module';
     EditServerComponent,
     ServerComponent,
     PageNotFoundComponent,
+    ErrorComponentComponent,
   ],
   imports: [BrowserModule, FormsModule, AppRoutingModule],
   providers: [ServersService],
