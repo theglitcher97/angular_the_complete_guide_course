@@ -5,29 +5,29 @@
       <button (click)="collapsed = !collapsed" class="navbar-toggle" type="button">
         <span *ngFor="let iconBar of [1, 2, 3]" class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Recipe Book</a>
+      <a class="navbar-brand">Recipe Book</a>
     </div>
 
     <!-- Collapsible section -->
     <div (window:resize)="collapsed = true" [class.collapse]="collapsed" class="navbar-collapse">
       <!-- Navigation links section -->
       <ul class="nav navbar-nav">
-        <li><a routerLink="recipe">Recipes</a></li>
-        <li><a routerLink="shopping-list">Shopping List</a></li>
+        <li><a routerLink="/recipe" routerLinkActive="active">Recipes</a></li>
+        <li><a routerLink="/shopping-list" routerLinkActive="active">Shopping List</a></li>
       </ul>
       <!-- End of navigation links section -->
 
       <!-- Dropdown menu -->
       <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a class="dropdown-toggle" href="#" role="button">
+        <li appDropDown class="dropdown">
+          <a class="dropdown-toggle" role="button" style="cursor: pointer;">
             Manage <span class="caret"></span>
           </a>
 
           <!-- Dropdown content-->
           <ul class="dropdown-menu">
-            <li><a href="#">Save data</a></li>
-            <li><a href="#">Fetch data</a></li>
+            <li><a>Save data</a></li>
+            <li><a>Fetch data</a></li>
           </ul>
         </li>
       </ul>
