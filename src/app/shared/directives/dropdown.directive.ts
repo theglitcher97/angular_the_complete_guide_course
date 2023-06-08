@@ -25,7 +25,6 @@ export class DropdownDirective {
   @HostListener('document:click', ['$event']) toggleDocumentMenus(
     event: Event
   ) {
-    console.log(event.target);
     /**
      * event.target is the element being clicked on, we are checking if the element this
      * directive sits on contains that element, if so, we toggle the 'open' class, otherwise just close it,
