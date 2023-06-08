@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +7,4 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class HeaderComponent {
   public collapsed = true;
-  @Output() tabSelectedEvent: EventEmitter<string> = new EventEmitter<string>();
-
-  onDisplayTab(tabName: string) {
-    this.tabSelectedEvent.emit(tabName);
-  }
 }

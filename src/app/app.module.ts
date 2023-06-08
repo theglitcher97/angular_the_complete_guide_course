@@ -12,6 +12,7 @@ import { HeaderComponent } from './header-component/header.component';
 import { RecipesComponent } from './recipe-book/recipes/recipes.component';
 import { NgOptimizedImage } from '@angular/common';
 import { DropdownDirective } from './shared/directives/dropdown.directive';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { DropdownDirective } from './shared/directives/dropdown.directive';
     // Directives
     DropdownDirective,
   ],
-  imports: [BrowserModule, FormsModule, NgOptimizedImage],
+  imports: [BrowserModule, FormsModule, NgOptimizedImage, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
 })
