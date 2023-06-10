@@ -3,8 +3,9 @@
     <div #dropdown (click)="onDropdownClicked(dropdown)" class="dropdown" style="width: 10%; cursor: pointer">
       <span class="glyphicon glyphicon-option-vertical"></span>
       <ul aria-labelledby="dropdownMenu1" class="dropdown-menu">
-        <li (click)="onEditHabit(habit)"><a href="#"><span class="glyphicon glyphicon-pencil"
-                                                           style="color: deepskyblue"></span> Edit</a></li>
+        <li><a [routerLink]="'/'+EDIT_HABIT_PATH"><span class="glyphicon glyphicon-pencil"
+                                                        style="color: deepskyblue"></span> Edit</a>
+        </li>
         <li (click)="onDeleteHabit(habit)"><a href="#"><span class="glyphicon glyphicon-alert"
                                                              style="color: tomato"></span> Delete</a></li>
       </ul>

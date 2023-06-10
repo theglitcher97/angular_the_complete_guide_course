@@ -1,23 +1,28 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Habit } from '../../models/habit';
 import { HabitsService } from '../../../shared/services/habits.service';
+import { EDIT_HABIT_PATH } from '../../../shared/constants/RoutingConstants';
 
 @Component({
   selector: 'app-habit',
   templateUrl: './habit.component.html',
   styleUrls: ['./habit.component.css'],
 })
-export class HabitComponent {
+export class HabitComponent implements OnInit {
   @Input() habit!: Habit;
+  protected EDIT_HABIT_PATH!: string;
 
   constructor(private habitsService: HabitsService) {}
 
-  onDropdownClicked(dropdown: HTMLDivElement) {
-    dropdown.classList.toggle('open');
+  ngOnInit() {
+    this.EDIT_HABIT_PATH = EDIT_HABIT_PATH.replace(
+      ':id',
+      String(this.habit.id)
+    );
   }
 
-  onEditHabit(habit: Habit) {
-    this.habitsService.habitSelectedToEdit(habit);
+  onDropdownClicked(dropdown: HTMLDivElement) {
+    dropdown.classList.toggle('open');
   }
 
   onDeleteHabit(habit: Habit) {
