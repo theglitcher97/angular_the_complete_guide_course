@@ -7,6 +7,8 @@ import {
 } from '@angular/core';
 import { Habit, ImpactEnum } from '../dashboard/models/habit';
 import { HabitsService } from '../shared/services/habits.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { DASHBOARD_PATH } from '../shared/constants/RoutingConstants';
 
 @Component({
   selector: 'app-add-habit',
@@ -22,21 +24,27 @@ export class AddHabitComponent implements AfterViewInit, OnInit {
   public newHabitAddedMessage = 'New habit was added successfully!';
   public displayMessage = false;
   public action!: string;
+  protected readonly ADD_ACTION = 'add';
+  protected readonly EDIT_ACTION = 'edit';
   protected readonly ImpactEnum = ImpactEnum;
 
-  constructor(private habitsService: HabitsService) {}
+  constructor(
+    private habitsService: HabitsService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    if (!this.action) this.action = 'Add';
-    this.habit = this.habitsService.habit;
-    if (this.habit) this.action = 'Edit';
+    const habitId = +this.activatedRoute.snapshot.params['id'];
+    this.action = this.ADD_ACTION;
+    if (!isNaN(habitId)) {
+      this.habit = this.habitsService.get(habitId);
+      this.action = this.EDIT_ACTION;
+    }
   }
 
   ngAfterViewInit() {
-    if (this.habit) {
-      this.fillForm(this.habit);
-      this.action = 'Edit';
-    }
+    if (this.habit) this.fillForm(this.habit);
   }
 
   onSubmit() {
@@ -47,7 +55,7 @@ export class AddHabitComponent implements AfterViewInit, OnInit {
 
     if (!this.isHabitValid(name, impact, times_a_day, days_per_week)) return;
 
-    if (this.action.toLowerCase() === 'add') {
+    if (this.action === this.ADD_ACTION) {
       this.habitsService.addHabit(
         new Habit(name, impact, times_a_day, days_per_week)
       );
@@ -58,15 +66,14 @@ export class AddHabitComponent implements AfterViewInit, OnInit {
       this.habit.days_per_week = days_per_week;
 
       this.habitsService.editHabit(this.habit);
-      // this.onHabitEditedEvent.emit(this.habit);
       this.newHabitAddedMessage =
         'Habit ' + this.habit?.name + ' was edited successfully!';
     }
 
     this.displayMessage = true;
-    setTimeout(() => (this.displayMessage = false), 1000);
-
-    this.resetForm();
+    setTimeout(() => {
+      this.router.navigate([DASHBOARD_PATH]);
+    }, 1000);
   }
 
   private isHabitValid(
@@ -78,13 +85,6 @@ export class AddHabitComponent implements AfterViewInit, OnInit {
     return (
       name.trim().length > 0 && impact && times_a_day > 0 && days_per_week > 0
     );
-  }
-
-  private resetForm() {
-    this.habitName.nativeElement.value = '';
-    this.habitImpact.nativeElement.value = this.ImpactEnum.positive;
-    this.habitTimesADay.nativeElement.value = 1;
-    this.habitDaysPerWeek.nativeElement.value = 1;
   }
 
   private fillForm(habit: Habit) {

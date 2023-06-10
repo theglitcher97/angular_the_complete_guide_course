@@ -1,4 +1,5 @@
-<div *ngIf="displayMessage" [ngClass]="{'alert-success': action.toLowerCase() === 'add', 'alert-info': action.toLowerCase() === 'edit'}"
+<div *ngIf="displayMessage"
+     [ngClass]="{'alert-success': action.toLowerCase() === 'add', 'alert-info': action.toLowerCase() === 'edit'}"
      class="col-md-12 alert">
   <p>{{newHabitAddedMessage}}</p>
 </div>
@@ -32,7 +33,7 @@
     <div class="btn-group" role="group">
       <button class="btn btn-default" type="button">Reset</button>
       <button (click)="onSubmit()"
-              [ngClass]="{'btn-success': action.toLowerCase() === 'add', 'btn-info': action.toLowerCase() === 'edit'}"
+              [ngClass]="{'btn-success': action === ADD_ACTION, 'btn-info': action === EDIT_ACTION}"
               class="btn btn-group-lg"
               type="button">{{action}}</button>
     </div>

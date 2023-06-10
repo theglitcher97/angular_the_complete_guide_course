@@ -8,8 +8,6 @@ export class HabitsService {
     new Habit('Drink Alcohol', ImpactEnum.negative, 2, 4),
     new Habit('Go to work', ImpactEnum.neutral, 1, 5),
   ];
-  public selectedTab = 'dashboard';
-  public habit!: Habit | undefined;
   progressBarValue!: number;
   private habitsCopy!: Habit[];
   private minProgressBar: number = 1;
@@ -25,17 +23,9 @@ export class HabitsService {
   }
 
   public editHabit(habit: Habit) {
-    const index = this.habits.findIndex((h) => h.id === habit.id);
-    if (index !== -1) {
-      this.habits[index] = habit;
-      this.habitsCopy = [...this.habits];
-    }
+    this.habits[habit.id] = habit;
+    this.habitsCopy = [...this.habits];
     this.calculateProgressBar();
-  }
-
-  public habitSelectedToEdit(habit: Habit) {
-    this.selectedTab = 'add-habit';
-    this.habit = habit;
   }
 
   public removeHabit(habit: Habit) {
@@ -75,5 +65,9 @@ export class HabitsService {
     const progress = Math.round((positivePoints / totalPoints) * 100);
     this.progressBarValue =
       progress > this.minProgressBar ? progress : this.minProgressBar;
+  }
+
+  get(habitId: number) {
+    return this.habits[habitId];
   }
 }
