@@ -1,0 +1,4 @@
+<pre *ngIf="recipe; else newRecipe">{{recipe | json}}</pre>
+<ng-template #newRecipe>
+  <p>New Recipe</p>
+</ng-template>
