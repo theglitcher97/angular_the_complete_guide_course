@@ -12,7 +12,7 @@ const appRoutes: Routes = [
     children: [
       { path: '', component: SelectRecipeComponent },
       { path: ':id', component: RecipeDetailsComponent },
-      { path: '**', redirectTo: '/', pathMatch: 'full' },
+      { path: '**', redirectTo: '/recipe', pathMatch: 'full' },
     ],
   },
   { path: 'shopping-list', component: ShoppingListComponent },
