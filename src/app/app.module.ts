@@ -14,6 +14,7 @@ import { NgOptimizedImage } from '@angular/common';
 import { DropdownDirective } from './shared/directives/dropdown.directive';
 import { AppRoutingModule } from './app-routing.module';
 import { SelectRecipeComponent } from './recipe-book/recipe-list/select-recipe/select-recipe.component';
+import { RecipeEditComponent } from './recipe-book/recipe-list/recipe-edit/recipe-edit.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { SelectRecipeComponent } from './recipe-book/recipe-list/select-recipe/s
     // Directives
     DropdownDirective,
     SelectRecipeComponent,
+    RecipeEditComponent,
   ],
   imports: [BrowserModule, FormsModule, NgOptimizedImage, AppRoutingModule],
   providers: [],

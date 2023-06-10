@@ -19,8 +19,9 @@ export class RecipeDetailsComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
       const recipeIndex = +params['id'];
-      if (recipeIndex !== undefined)
+      if (recipeIndex !== undefined) {
         this.recipe = this.recipeService.getRecipe(recipeIndex);
+      }
     });
   }
 
