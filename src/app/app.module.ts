@@ -7,6 +7,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HabitsComponent } from './dashboard/habits/habits.component';
 import { HabitComponent } from './dashboard/habits/habit/habit.component';
 import { AddHabitComponent } from './add-habit/add-habit.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { AddHabitComponent } from './add-habit/add-habit.component';
     HabitComponent,
     AddHabitComponent,
   ],
-  imports: [BrowserModule, FormsModule],
+  imports: [BrowserModule, FormsModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
 })

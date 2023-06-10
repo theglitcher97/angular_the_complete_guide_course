@@ -3,13 +3,12 @@
     <div class="navbar-header">
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
-          <li (click)="onNavigate('dashboard')" [ngClass]="{active: habitsService.selectedTab==='dashboard'}"><a
-            href="#">
-            Dashboard </a></li>
-          <li (click)="onNavigate('add-habit')" [ngClass]="{active: habitsService.selectedTab==='add-habit'}"><a
-            href="#">Add
-            Habit</a></li>
+          <li routerLinkActive="active">
+            <a routerLink="dashboard"> Dashboard </a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="add-habit">Add Habit</a>
+          </li>
         </ul>
 
         <!-- Search Bar-->
@@ -30,8 +29,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <app-dashboard *ngIf="habitsService.selectedTab==='dashboard'"></app-dashboard>
-      <app-add-habit *ngIf="habitsService.selectedTab==='add-habit'"></app-add-habit>
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>

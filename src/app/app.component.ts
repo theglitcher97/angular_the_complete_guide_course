@@ -19,11 +19,6 @@ export class AppComponent implements OnInit {
     this.habitsService.calculateProgressBar();
   }
 
-  onNavigate(tab: string) {
-    this.habitsService.selectedTab = tab;
-    this.habitsService.habit = undefined;
-  }
-
   onSearchHabit(name: string) {
     this.habitsService.onSearchHabit(name);
   }
