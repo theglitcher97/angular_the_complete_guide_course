@@ -35,16 +35,25 @@ export class HomeComponent implements OnInit, OnDestroy {
           //? the "next" method is use to send data to anyone subscribed to this observable
           counter++;
           observer.next(counter);
+          if (counter >= 3) {
+            //? when we throw an Error, the observer automatically stops
+            observer.error(new Error(`Counter surpass the limit: ${counter}`));
+          }
         }, 1000);
       }
     );
 
-    const customIntervalSubscription = customIntervalObservable.subscribe(
-      (count: number) => {
+    const customIntervalSubscription = customIntervalObservable.subscribe({
+      //? This function gets triggered everytime new data is emitted from the observable
+      next: (count: number) => {
         this.counter = count;
         console.log(count);
-      }
-    );
+      },
+      //? This function gets triggered when an Error is launch from the observable
+      error: (error: any) => {
+        console.error(error);
+      },
+    });
     this.subscriptions.add(customIntervalSubscription);
   }
 
