@@ -60,6 +60,10 @@ export class HomeComponent implements OnInit, OnDestroy {
       error: (error: any) => {
         console.error(error);
       },
+      complete: () => {
+        //? this is only trigger when the observable completes, not when an Error or something else happens
+        console.log('The observable has completed!');
+      },
     });
     this.subscriptions.add(customIntervalSubscription);
   }
