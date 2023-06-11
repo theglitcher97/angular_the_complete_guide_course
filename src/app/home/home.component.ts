@@ -31,12 +31,16 @@ export class HomeComponent implements OnInit, OnDestroy {
       (observer: Observer<number>) => {
         //? "observer" is a parameter pass by rxjs to our function
         let counter = 0;
-        setInterval(() => {
+        const interval = setInterval(() => {
           //? the "next" method is use to send data to anyone subscribed to this observable
           counter++;
-          observer.next(counter);
+          console.log(counter); // this will be logging while the setInterval is alive
+          observer.next(counter); //? this will ONLY send data if the observer isn't completed
           if (counter === 3) {
+            //? this completes our observable, thus it wont emit any other value;
+            //? even if the setInterval keeps executing
             observer.complete();
+            clearInterval(interval);
           }
           if (counter >= 3) {
             //? when we throw an Error, the observer automatically stops
