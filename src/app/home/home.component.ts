@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Observer, Subscription } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -33,38 +34,47 @@ export class HomeComponent implements OnInit, OnDestroy {
         let counter = 0;
         const interval = setInterval(() => {
           //? the "next" method is use to send data to anyone subscribed to this observable
-          counter++;
-          console.log(counter); // this will be logging while the setInterval is alive
-          observer.next(counter); //? this will ONLY send data if the observer isn't completed
+          counter = Math.floor(Math.random() * 10 + 1);
+          // console.log(counter); // this will be logging while the setInterval is alive
           if (counter === 3) {
             //? this completes our observable, thus it wont emit any other value;
             //? even if the setInterval keeps executing
             observer.complete();
             clearInterval(interval);
           }
-          if (counter >= 3) {
+          if (counter > 8) {
             //? when we throw an Error, the observer automatically stops
-            observer.error(new Error(`Counter surpass the limit: ${counter}`));
+            observer.error(
+              new Error(
+                `Counter surpass the limit of 3 current value: ${counter}`
+              )
+            );
           }
+          observer.next(counter); //? this will ONLY send data if the observer isn't completed
         }, 1000);
       }
     );
 
-    const customIntervalSubscription = customIntervalObservable.subscribe({
-      //? This function gets triggered everytime new data is emitted from the observable
-      next: (count: number) => {
-        this.counter = count;
-        console.log(count);
-      },
-      //? This function gets triggered when an Error is launch from the observable
-      error: (error: any) => {
-        console.error(error);
-      },
-      complete: () => {
-        //? this is only trigger when the observable completes, not when an Error or something else happens
-        console.log('The observable has completed!');
-      },
-    });
+    const customIntervalSubscription = customIntervalObservable
+      .pipe(
+        filter((digit: number) => digit % 2 === 0),
+        map((digit: number) => digit * digit)
+      )
+      .subscribe({
+        //? This function gets triggered everytime new data is emitted from the observable
+        next: (count: number) => {
+          this.counter = count;
+          console.log(count);
+        },
+        //? This function gets triggered when an Error is launch from the observable
+        error: (error: any) => {
+          console.error(error);
+        },
+        complete: () => {
+          //? this is only trigger when the observable completes, not when an Error or something else happens
+          console.log('The observable has completed!');
+        },
+      });
     this.subscriptions.add(customIntervalSubscription);
   }
 
