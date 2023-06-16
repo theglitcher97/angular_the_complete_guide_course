@@ -1,11 +1,10 @@
-import { Recipe } from '../models/recipe';
-import { EventEmitter, Injectable } from '@angular/core';
-import { Ingredient } from '../../shared/models/ingredient';
-import { ShoppingListService } from '../../shopping-list/services/shopping.list.service';
+import {Recipe} from '../models/recipe';
+import {Injectable} from '@angular/core';
+import {Ingredient} from '../../shared/models/ingredient';
+import {ShoppingListService} from '../../shopping-list/services/shopping.list.service';
 
 @Injectable()
 export class RecipeService {
-  private recipeSelected: EventEmitter<Recipe> = new EventEmitter<Recipe>();
   private recipes: Recipe[] = [
     new Recipe(
       'Fried fish with rice',
@@ -25,18 +24,11 @@ export class RecipeService {
     ),
   ];
 
-  constructor(private shoppingListService: ShoppingListService) {}
+  constructor(private shoppingListService: ShoppingListService) {
+  }
 
   public getRecipes() {
     return [...this.recipes];
-  }
-
-  public setValueToSelectedRecipeEvent(recipe: Recipe) {
-    this.recipeSelected.emit(recipe);
-  }
-
-  public getRecipeSelectedEvent() {
-    return this.recipeSelected;
   }
 
   public addIngredientsToRecipe(ingredients: Ingredient[]) {
